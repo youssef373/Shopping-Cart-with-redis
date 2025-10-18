@@ -1,61 +1,358 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 Redis Shopping Cart - Laravel E-commerce System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive e-commerce shopping cart system built with **Laravel 12**, **Redis**, **Livewire 3**, **Alpine.js**, and **Filament 3** to demonstrate advanced Redis concepts and modern Laravel development practices.
 
-## About Laravel
+## 📋 Project Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project is designed as a learning platform to understand Redis data structures and operations in a real-world e-commerce context. It showcases:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Redis Hashes** for cart storage
+- **Redis Sets** for wishlist management
+- **Redis Lists** for recently viewed products
+- **Redis Sorted Sets** for analytics and rankings
+- **Redis TTL** for cart expiration
+- **Distributed Locking** for stock management
+- **Real-time Updates** with Livewire
+- **Interactive UI** with Alpine.js
+- **Admin Panel** with Filament 3
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Tech Stack
 
-## Learning Laravel
+- **Backend**: Laravel 12, PHP 8.2+
+- **Database**: MySQL (persistent data)
+- **Cache/Session**: Redis (Predis client)
+- **Frontend**: Livewire 3, Alpine.js, Tailwind CSS 4
+- **Admin Panel**: Filament 3
+- **Authentication**: Laravel Breeze (Livewire)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Core Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 1. Product Management (Filament Admin)
+- Complete CRUD operations
+- Category management with hierarchical structure
+- Bulk actions (delete, update stock, change prices)
+- Product image uploads with media library
+- Stock management and alerts
+- Product variants (sizes, colors)
+- Import/export products (CSV)
+- Rich text editor for descriptions
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Shopping Cart (Redis Hashes + Livewire)
+- Store cart data in Redis using hashes
+- Real-time cart updates without page reload
+- Add/update/remove items
+- Cart expiration after 7 days of inactivity
+- Guest cart support with session ID
+- Merge guest cart with user cart on login
+- Mini cart dropdown in navbar
 
-## Laravel Sponsors
+### 3. Recently Viewed Products (Redis Lists)
+- Track last 10 viewed products per user
+- Use Redis LPUSH and LTRIM commands
+- Display in carousel on product pages
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 4. Wishlist (Redis Sets)
+- Store wishlist items in Redis sets
+- Add/remove with heart icon toggle
+- Move items from wishlist to cart
+- Real-time wishlist count
 
-### Premium Partners
+### 5. Abandoned Cart Recovery
+- Detect carts inactive for 24 hours
+- Queue email notifications
+- Dashboard statistics in Filament
+- View abandoned carts in admin panel
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 6. Cart Analytics (Filament Dashboard)
+- Track cart events (add/remove)
+- Store statistics in Redis sorted sets
+- Most added products ranking
+- Cart abandonment rate
+- Average cart value
+- Custom Filament widgets with charts
 
-## Contributing
+### 7. Product Recommendations
+- "Frequently bought together" using Redis sets
+- Track product pairs from checkouts
+- Display recommendations based on cart contents
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 8. Flash Sales / Limited Stock
+- Redis-based concurrent stock updates
+- Distributed locking to prevent overselling
+- Real-time stock counter
+- Countdown timer with Alpine.js
+- Flash sale management in admin
 
-## Code of Conduct
+### 9. User Session Enhancements
+- Store user preferences in Redis
+- Cache user profile data
+- Quick access to recent orders
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 10. Admin Dashboard (Filament)
+- Custom dashboard with widgets
+- View all active carts
+- Monitor Redis cache metrics
+- Clear specific user carts
+- Product popularity metrics
+- Cache management panel
+- Revenue statistics
+- Low stock alerts
 
-## Security Vulnerabilities
+## 📦 Installation
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Prerequisites
 
-## License
+- PHP 8.2 or higher
+- Composer
+- Node.js & NPM
+- MySQL
+- Redis Server
+- XAMPP (or similar local server)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Step 1: Install Dependencies
+
+```bash
+# Install PHP dependencies
+composer require predis/predis
+composer require livewire/livewire
+composer require filamentphp/filament:"^3.0"
+composer require laravel/breeze --dev
+
+# Install Node dependencies
+npm install alpinejs
+npm install
+```
+
+### Step 2: Environment Configuration
+
+Update your `.env` file:
+
+```env
+APP_NAME="Redis Shopping Cart"
+APP_URL=http://localhost:8000
+
+# Database Configuration
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=redis_cart
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Redis Configuration
+REDIS_CLIENT=predis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+# Session & Cache
+SESSION_DRIVER=redis
+CACHE_STORE=redis
+QUEUE_CONNECTION=redis
+```
+
+### Step 3: Database Setup
+
+```bash
+# Create database
+mysql -u root -e "CREATE DATABASE redis_cart;"
+
+# Run migrations
+php artisan migrate
+
+# Seed sample data
+php artisan db:seed
+```
+
+### Step 4: Install Breeze Authentication
+
+```bash
+php artisan breeze:install livewire
+php artisan migrate
+npm install && npm run build
+```
+
+### Step 5: Install Filament
+
+```bash
+php artisan filament:install --panels
+php artisan make:filament-user
+```
+
+### Step 6: Build Assets
+
+```bash
+npm run dev
+```
+
+### Step 7: Start Development Server
+
+```bash
+php artisan serve
+```
+
+Visit:
+- **Frontend**: http://localhost:8000
+- **Admin Panel**: http://localhost:8000/admin
+
+## 🗂️ Project Structure
+
+```
+app/
+├── Filament/
+│   ├── Resources/
+│   │   ├── ProductResource.php
+│   │   ├── CategoryResource.php
+│   │   ├── OrderResource.php
+│   │   └── UserResource.php
+│   └── Widgets/
+│       ├── CartAnalyticsWidget.php
+│       └── RevenueWidget.php
+├── Http/
+│   └── Livewire/
+│       ├── CartComponent.php
+│       ├── MiniCartComponent.php
+│       ├── ProductListComponent.php
+│       ├── WishlistComponent.php
+│       └── CheckoutComponent.php
+├── Services/
+│   ├── CartService.php
+│   ├── WishlistService.php
+│   └── RecentlyViewedService.php
+├── Repositories/
+│   └── RedisCartRepository.php
+└── Models/
+    ├── Product.php
+    ├── Category.php
+    ├── Order.php
+    └── OrderItem.php
+```
+
+## 🔑 Redis Key Structure
+
+| Key Pattern | Type | Description |
+|------------|------|-------------|
+| `cart:{user_id}` | Hash | User's shopping cart items |
+| `wishlist:{user_id}` | Set | User's wishlist product IDs |
+| `recent:{user_id}` | List | Recently viewed product IDs (max 10) |
+| `product:{product_id}` | String | Cached product data (JSON) |
+| `popular_products` | Sorted Set | Product popularity ranking |
+| `views:{product_id}` | String | Product view counter |
+| `stock:{product_id}` | String | Real-time stock count |
+| `cart_timestamp:{user_id}` | String | Last cart activity timestamp |
+| `abandoned_carts` | Set | User IDs with abandoned carts |
+| `flash_sale:{product_id}` | Hash | Flash sale details |
+
+## 📚 Redis Concepts Demonstrated
+
+### 1. **Hashes** (Shopping Cart)
+```php
+// Store cart items
+Redis::hset('cart:123', 'product_1', json_encode([
+    'quantity' => 2,
+    'price' => 29.99,
+    'name' => 'Product Name'
+]));
+
+// Get all cart items
+$cart = Redis::hgetall('cart:123');
+```
+
+### 2. **Sets** (Wishlist)
+```php
+// Add to wishlist
+Redis::sadd('wishlist:123', 1, 2, 3);
+
+// Check if product in wishlist
+$exists = Redis::sismember('wishlist:123', 1);
+
+// Remove from wishlist
+Redis::srem('wishlist:123', 1);
+```
+
+### 3. **Lists** (Recently Viewed)
+```php
+// Add to recently viewed (keep last 10)
+Redis::lpush('recent:123', 5);
+Redis::ltrim('recent:123', 0, 9);
+
+// Get recently viewed
+$recent = Redis::lrange('recent:123', 0, 9);
+```
+
+### 4. **Sorted Sets** (Analytics)
+```php
+// Increment product popularity score
+Redis::zincrby('popular_products', 1, 'product_5');
+
+// Get top 10 popular products
+$popular = Redis::zrevrange('popular_products', 0, 9, 'WITHSCORES');
+```
+
+### 5. **TTL** (Cart Expiration)
+```php
+// Set cart expiration (7 days)
+Redis::expire('cart:123', 60 * 60 * 24 * 7);
+
+// Check remaining TTL
+$ttl = Redis::ttl('cart:123');
+```
+
+### 6. **Distributed Locking** (Stock Management)
+```php
+// Acquire lock for stock update
+$lock = Cache::lock('stock:product_5', 10);
+if ($lock->get()) {
+    // Update stock safely
+    $lock->release();
+}
+```
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test suite
+php artisan test --testsuite=Feature
+
+# Run with coverage
+php artisan test --coverage
+```
+
+## 📖 Learning Path
+
+This project is structured to teach Redis concepts progressively:
+
+1. **Basic Operations**: Start with simple cart operations (HSET, HGET, HDEL)
+2. **Data Structures**: Explore Sets for wishlist, Lists for history
+3. **Advanced Features**: Sorted Sets for rankings, TTL for expiration
+4. **Performance**: Caching strategies, pipeline operations
+5. **Concurrency**: Distributed locks, atomic operations
+6. **Analytics**: Real-time metrics, aggregations
+
+## 🤝 Contributing
+
+This is a learning project. Feel free to:
+- Add new Redis features
+- Improve code quality
+- Enhance documentation
+- Report issues
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 🙏 Acknowledgments
+
+- Laravel Framework
+- Redis
+- Livewire
+- Alpine.js
+- Filament
+- Tailwind CSS
+
+---
+
+**Built with ❤️ for learning Redis and modern Laravel development**
